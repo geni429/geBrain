@@ -17,7 +17,7 @@ public class DBHelper {
 			createTable(getQuery.substring(12)); // create table
 			getQuery = null;
 		} else if (getQuery.toUpperCase().contains("INSERT INTO")) {
-			insertData(getQuery.toUpperCase().substring(10));	// insert data
+			insertData(getQuery.toUpperCase().substring(11));	// insert data
 			getQuery = null;
 		} else {
 			throw new WritingSQLException(1);
@@ -69,9 +69,8 @@ public class DBHelper {
 	} // create table method end(2017.3.18.09:51)
 
 	public void insertData(String insDataInfo) throws WritingSQLException {
-		if(getTableName == null){
-			throw new WritingSQLException(3);
-		}
+		if(getTableName == null) throw new WritingSQLException(3);
+		System.out.println(insDataInfo);
 		for(char c : insDataInfo.trim().toCharArray()){
 			if(c == ' ' || c == 'v' || c == 'V'){
 				break;
@@ -79,7 +78,9 @@ public class DBHelper {
 				this.i++;
 			}
 		}
-		if(getTableName != insDataInfo.trim().substring(0, i)){
+		if(getTableName.equals(insDataInfo.trim().substring(0, i))){
+			System.out.println(insDataInfo.trim().substring(0, i));
+		}  else {
 			throw new WritingSQLException(3);
 		}
 	}

@@ -9,6 +9,7 @@ public class tester {
 		test_SQL = scan.nextLine();
 		tester test = new tester();
 		test.create(test_SQL);
+		test_SQL = scan.nextLine();
 		test.insert(test_SQL);
 	}
 	
